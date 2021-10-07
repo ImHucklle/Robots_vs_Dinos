@@ -2,9 +2,9 @@ from _typeshed import Self
 
 
 class Dinosaurs:
-    def __init__(self, name, attack_power):
+    def __init__(self, name, health, attack_power):
         self.name = name
-        self.health = 0
+        self.health = health
         self.attack_power = attack_power
 
     def attack_robot(self, robot):

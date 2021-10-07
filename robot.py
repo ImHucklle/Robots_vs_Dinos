@@ -1,9 +1,9 @@
 from weapons import Weapons
 
 class Robots:
-    def __init__(self, name):
+    def __init__(self, name, health):
         self.name = name
-        self.health = 0
+        self.health = health
         self.weapon = Weapons
 
     def attack_dinosaur(self, dinosaur):
@@ -13,4 +13,11 @@ class Robots:
         robot = self.health
     
     def robot_weapon_equip(self):
-        self.weapon.weapon_equip(name, weapon)
+        weapon_one = Weapons("Lightsaber", 200)
+        
+
+        weapon_two = Weapons("BFG 9000", 250)
+
+
+        weapon_three = Weapons("Battle Rifle", 150)
+        
