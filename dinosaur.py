@@ -1,4 +1,3 @@
-from _typeshed import Self
 
 
 class Dinosaurs:
@@ -9,6 +8,3 @@ class Dinosaurs:
 
     def attack_robot(self, robot):
         pass
-
-    def dinosaur_stats(self):
-        self.name 
