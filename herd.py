@@ -14,4 +14,4 @@ class Herd:
         dinosaur_three = Dinosaurs("Drogon", 1700, 200)
         self.dinosaur.append(dinosaur_three)
         
-        print(f"{dinosaur_one.name}, {dinosaur_two.name} and {dinosaur_three.name} have entered the Battlefield!")
+        print(f"{dinosaur_one.name}, {dinosaur_two.name} and {dinosaur_three.name} have stomped into the Battlefield!")

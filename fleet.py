@@ -15,4 +15,4 @@ class Fleet:
         robot_three = Robots("Atraks", 1250, Weapons ("Energy Sword", 200))
         self.robots.append(robot_three)
 
-        print(f"{robot_one.name}, {robot_two.name} and {robot_three.name} have entered the Battlefield!")
+        print(f"{robot_one.name}, {robot_two.name} and {robot_three.name} have dropped into the Battlefield!")

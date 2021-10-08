@@ -4,12 +4,12 @@ from herd import Herd
 
 class Battlefield:
     def __init__(self):
-        self.battlefield = battlefield
         pass
 
     def display_welcome(self):
         print ("Hello, welcome to the carnage!")
 
+#user picks team then starts, 1 for robots, 2 for dinos
 
     def run_game(self):
         team_select = input("Choose yout side! 1 for Team Robots or 2 for Team Dino")
@@ -21,36 +21,30 @@ class Battlefield:
             print("Invalid entry, try again")
         return team_select
 
-        #user picks team then starts, 1 for robots, 2 for dinos
+        
 
-        #
 
-    
     def battle(self):
-        pass
-        #user (player 1) goes first
+        if dinosaur.turn < robot.turn:
+            dinosaur.attack()
 
+            if robot.health > 0:
+                robot.attack()
+            else:
+                robot.health = 0
+                return robot.health
 
-    def dino_turn(self, dinosaur):
-        pass
-        #attack
+        elif dinosaur.turn > robot.turn:
+            robot.attack()
 
+            if dinosaur.health > 0:
+                dinosaur.attack(Player1,Player2)
+            else:
+                dinosaur.health = 0
+                return Player1.health
 
-    def robo_turn(self, robot):
-        pass
-        #attack
-
-
-    def show_dino_opponent_options(self):
-        pass
-        #display opponent health and attack power
-        #attack which opponent
-
-
-    def show_robo_opponent_options(self):
-        pass
-        #display opponent health and attack power
-        #attack which opponent
+            # Any one dies use random.()
+            
 
     def display_winners(self):
         if self.dinosaur() < 1 and self.robots() > 0:
