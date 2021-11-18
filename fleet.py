@@ -1,18 +1,14 @@
 from robot import Robots
-from weapons import Weapons
 
 class Fleet:
     def __init__(self):
-        self.robots = ["Megatron", "Optimus", "Atraks"]
+        self.robots = []
+        self.create_fleet()
 
     def create_fleet(self):
-        robot_one = Robots("Megatron", 1500, Weapons ("Lightsaber", 225))
-        self.robots.append(robot_one)
-
-        robot_two = Robots("Optimus", 1400, Weapons ("BFG 9000", 250))
-        self.robots.append(robot_two)
-
-        robot_three = Robots("Atraks", 1250, Weapons ("Energy Sword", 200))
-        self.robots.append(robot_three)
-
-        print(f"{robot_one.name}, {robot_two.name} and {robot_three.name} have dropped into the Battlefield!")
+        robot0 = Robots('Optimus Prime', "Lightsaber")
+        robot1 = Robots('Master Chief', "BR")
+        robot2 = Robots('Megatron', "Potato Cannon")
+        self.robots.append(robot0)
+        self.robots.append(robot1)
+        self.robots.append(robot2)

@@ -4,54 +4,83 @@ from herd import Herd
 
 class Battlefield:
     def __init__(self):
-        pass
+        self.fleet = Fleet()
+        self.herd = Herd()
 
     def display_welcome(self):
         print ("Hello, welcome to the carnage!")
 
-#user picks team then starts, 1 for robots, 2 for dinos
+    def game_start(self):    
+        user = input("Ready to fight for survival? Enter y or n.")
+        if(user == "y"):
+            print("**Game Starts**")
 
-    def run_game(self):
-        team_select = input("Choose yout side! 1 for Team Robots or 2 for Team Dino")
-        if team_select.battle(self) == '1':
-            print('You chose Team Robots!')
-        elif team_select.battle(self) == '2':
-            print('You chose Team Dino!')
-        else:
-            print("Invalid entry, try again")
-        return team_select
+    def battle(self): 
+        while len(self.herd.dinosaurs) > 0 and len(self.fleet.robots) > 0:
+            if len(self.herd.dinosaurs) > 0 and len(self.fleet.robots) > 0:
+                self.dino_turn()
+            elif len(self.herd.dinosaurs) > 0 and len(self.fleet.robots) > 0:
+                self.robo_turn()
+        print(self.herd.dinosaurs)          
+        self.herd.dinosaurs.display_winnners()
 
-        
+    def dino_turn(self):
+        print("Choose your dinosaur to attack:")
+        self.show_dino_opponent_options()
+        dino_champion = int(input())
+        if len(self.fleet.robots) > 0:
+            print("Choose the robot that'll defend:")
+            self.show_robo_opponent_options()
+            robot_champion = int(input())
+            self.herd.dinosaurs[dino_champion].attack(self.fleet.robots[robot_champion])
+            if self.fleet.robots[robot_champion].health <= 0:
+                print(f"{self.fleet.robots[robot_champion].name} has fainted")
+                self.fleet.robots.remove(self.fleet.robots[robot_champion])
+        else: 
+            self.display_winnners()
 
-
-    def battle(self):
-        if dinosaur.turn < robot.turn:
-            dinosaur.attack()
-
-            if robot.health > 0:
-                robot.attack()
-            else:
-                robot.health = 0
-                return robot.health
-
-        elif dinosaur.turn > robot.turn:
-            robot.attack()
-
-            if dinosaur.health > 0:
-                dinosaur.attack(Player1,Player2)
-            else:
-                dinosaur.health = 0
-                return Player1.health
-
-            # Any one dies use random.()
+    def robo_turn(self): 
+        print("Choose the robot who will attack:")
+        self.show_robo_opponent_options()
+        robot_champion = int(input())
+        if len(self.herd.dinosaurs) > 0:
+            print("Choose the dinosaur who will defend:")
+            self.show_dino_opponent_options()
+            dino_champion = int(input())
+            self.fleet.robots[robot_champion].attack(self.herd.dinosaurs[dino_champion])
+            if self.herd.dinosaurs[dino_champion].health <= 0:
+                print(f"{self.herd.dinosaurs[dino_champion].name} has fainted")
+                self.herd.dinosaurs.remove(self.herd.dinosaurs[dino_champion])
+        else: 
+            self.display_winnners()
             
 
-    def display_winners(self):
-        if self.dinosaur() < 1 and self.robots() > 0:
-            self.gameOver = True
-            print("Team Robots WIN!")
-        elif self.robots(self) < 1 and self.dinosaur() > 0:
-            self.gameOver = True
-            print("Team Dino WINS")
-        #which robots or dinosaurs died
-        #declared winner/ validate winner
+    def show_dino_opponent_options(self): 
+        dino_index = 0
+        for dino in self.herd.dinosaurs:
+            print(f"Press {dino_index} for {dino.name}")
+            dino_index += 1        
+
+
+    def show_robo_opponent_options(self): 
+        robot_index = 0
+        for robot in self.fleet.robots:
+            print(f"Press {robot_index} for {robot.name}")
+            robot_index += 1        
+
+    def display_winners(self): 
+        if len(self.herd.dinosaurs == 0 ):
+            print("The Dinosaurs went EXTINCT! Robots WIN!")
+        if len(self.fleet.robots ==  0 ):
+            print("The Robots are DEAD! Dinosaurs WIN!")
+
+    def run_game(self):
+        self.display_welcome()
+        self.game_start()
+        self.robot0_battle = self.fleet.robots[0]
+        self.robot1_battle = self.fleet.robots[1]
+        self.robot2_battle = self.fleet.robots[2]
+        self.dino0_battle = self.herd.dinosaurs[0]
+        self.dino1_battle = self.herd.dinosaurs[1]
+        self.dino2_battle = self.herd.dinosaurs[2]
+        self.battle()
